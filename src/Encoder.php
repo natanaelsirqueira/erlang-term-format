@@ -77,17 +77,17 @@ class Encoder {
                 return static::encodeNewFloat($input);
             break;
             case 'string': // @codeCoverageIgnore
-                if(\is_numeric($input) && \preg_match('/[^0-9\-]/su', $input) === 0) {
-                    $gmp = @\gmp_init($input);
+                // if(\is_numeric($input) && \preg_match('/[^0-9\-]/su', $input) === 0) {
+                //     $gmp = @\gmp_init($input);
                     
-                    if($gmp instanceof \GMP) {
-                        if(\gmp_cmp($gmp, static::$gmpTop) <= 0 && \gmp_cmp($gmp, static::$gmpBottom) >= 0) {
-                            return static::encodeSmallBig($gmp);
-                        }
+                //     if($gmp instanceof \GMP) {
+                //         if(\gmp_cmp($gmp, static::$gmpTop) <= 0 && \gmp_cmp($gmp, static::$gmpBottom) >= 0) {
+                //             return static::encodeSmallBig($gmp);
+                //         }
                         
-                        return static::encodeLargeBig($gmp);
-                    }
-                }
+                //         return static::encodeLargeBig($gmp);
+                //     }
+                // }
                 
                 return static::encodeBinary($input);
             break;
